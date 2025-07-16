@@ -1,12 +1,13 @@
+
 import streamlit as st
 import os
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import DownloadError
 
-# 🔧 Fix ffmpeg path issue on Streamlit Cloud
-os.environ['PATH'] += os.pathsep + '/usr/bin'
+# 🔧 Force yt-dlp to use bundled ffmpeg binary
+os.environ["PATH"] = os.path.abspath("bin") + os.pathsep + os.environ["PATH"]
 
-st.title("YouTube Video Downloader (Cloud-Based)")
+st.title("YouTube Video Downloader (Self-Contained)")
 
 url = st.text_input("Enter YouTube Video URL:")
 
